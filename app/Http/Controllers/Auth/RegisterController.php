@@ -70,4 +70,15 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Inertia\Response|\Inertia\ResponseFactory
+     */
+    public function showRegistrationForm()
+    {
+        return inertia('Auth/Register');
+    }
 }
