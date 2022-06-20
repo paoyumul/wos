@@ -2,6 +2,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Layout from './Pages/Layout';
+import 'bootstrap';
 
 InertiaProgress.init();
 
@@ -12,8 +13,10 @@ createInertiaApp({
         return page;
     },
     setup({el, App, props, plugin}) {
-        createApp({render: () => h(App, props)})
+        let app = createApp({render: () => h(App, props)})
             .use(plugin)
             .mount(el);
+
+        app.config.globalProperties.$route = route;
     },
 });

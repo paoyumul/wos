@@ -1,7 +1,7 @@
 <template>
     <app-header></app-header>
     <main>
-        <div class="container">
+        <div class="container py-4">
             <slot></slot>
         </div>
     </main>

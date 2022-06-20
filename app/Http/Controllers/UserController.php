@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -11,24 +12,31 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index')->with([
+        return inertia('Users/Index', [
             'users' => $users,
         ]);
     }
 
     public function edit(User $user)
     {
-        return view('admin.users.edit')->with([
+        return inertia('Users/Edit', [
             'user' => $user,
         ]);
     }
 
-    public function update(User $user)
+    public function update(Request $request, User $user)
     {
-        $user->update(request()->all());
+        $user->update($request->all());
 
-        return view('admin.users.edit')->with([
-            'user' => $user,
-        ]);
+        return redirect()->route('admin.users.edit', $user->id);
+    }
+
+    public function destroy(Request $request, User $user)
+    {
+        $user->delete();
+
+        $request->session()->flash('success', 'Post deleted successfully!');
+
+        return redirect()->route('admin.users.index');
     }
 }

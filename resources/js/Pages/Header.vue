@@ -19,18 +19,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <Link href="/admin/users" class="nav-link">Users</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link href="/admin/services" class="nav-link">Services</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link href="/admin/schedules" class="nav-link">Schedules</Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link href="/admin/appointments" class="nav-link">Appointments</Link>
-                    </li>
+                    <template v-if="user">
+                        <li class="nav-item">
+                            <Link href="/admin/users" class="nav-link">Users</Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link href="/admin/services" class="nav-link">Services</Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link href="/admin/schedules" class="nav-link">Schedules</Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link href="/admin/appointments" class="nav-link">Appointments</Link>
+                        </li>
+                    </template>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
