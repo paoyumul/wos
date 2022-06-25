@@ -68,6 +68,7 @@ module.exports = {
             },
             black: '#000000',
             red: colors.red,
+            green: colors.green,
         },
         spacing: {
             '0': '0',

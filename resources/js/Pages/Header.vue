@@ -4,17 +4,6 @@
             <Link class="text-lg mr-4 whitespace-nowrap font-semibold" href="/">
                 Wos Dental Clinic
             </Link>
-            <button
-                class="d-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle Navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
             <div class="w-full flex align-item-center justify-between" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
@@ -40,10 +29,10 @@
                     <!-- Authentication Links -->
                     <template v-if="!user">
                         <li class="ml-4">
-                            <Link href="/login">Login</Link>
+                            <Link :href="$route('login')">Login</Link>
                         </li>
                         <li class="ml-4">
-                            <Link href="/register">Register</Link>
+                            <Link :href="$route('register')">Register</Link>
                         </li>
                     </template>
                     <template v-else>
@@ -83,24 +72,12 @@
     </nav>
 </template>
 
-<script>
+<script setup>
 import { computed } from 'vue';
 import { Link, usePage, useForm } from '@inertiajs/inertia-vue3';
 
-export default {
-    components: {
-        Link,
-    },
-    setup() {
-        const user = computed(() => usePage().props.value.auth.user);
-        const form = useForm({
-            _token: document.querySelector('meta[name="csrf-token"]').content,
-        });
-
-        return {
-            user,
-            form,
-        };
-    },
-};
+const user = computed(() => usePage().props.value.auth.user);
+const form = useForm({
+    _token: usePage().props.value.csrf_token,
+});
 </script>

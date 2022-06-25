@@ -19,14 +19,4 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
-
-    /**
-     * Display the form to request a password reset link.
-     *
-     * @return \Inertia\Response|\Inertia\ResponseFactory
-     */
-    public function showLinkRequestForm()
-    {
-        return inertia('Auth/Passwords/Email');
-    }
 }

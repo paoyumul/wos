@@ -33,7 +33,7 @@ export default {
     setup() {
         const user = usePage().props.value.user;
         const form = useForm({
-            _token: document.querySelector('meta[name="csrf-token"]').content,
+            _token: usePage().props.value.csrf_token,
             name: user.name,
             email: user.email,
             phone: user.phone,

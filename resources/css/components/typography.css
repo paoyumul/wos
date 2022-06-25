@@ -10,7 +10,7 @@ textarea {
     @apply font-display;
     @apply leading-relaxed;
     @apply text-md;
-    @apply font-normal;
+    @apply font-medium;
     @apply tracking-wide;
 
     @screen sm {

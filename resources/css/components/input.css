@@ -1,6 +1,6 @@
 label {
     @apply text-sm;
-    @apply font-normal;
+    @apply font-medium;
     @apply text-gray-700;
 }
 
