@@ -8,6 +8,7 @@
 
     <!-- Scripts -->
     @routes
+    <script src="{{ mix('js/tabler.js') }}" defer></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -16,11 +17,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/tabler.css') }}" rel="stylesheet">
+{{--    <link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
 
     @inertiaHead
 </head>
-<body class="bg-gray-100">
+<body class="theme-light">
     @inertia
 </body>
 </html>

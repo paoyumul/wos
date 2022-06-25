@@ -1,13 +1,22 @@
 <template>
-    <div class="flex items-center justify-between mb-4">
-        <h1 class="text-2xl mb-0">Add New User</h1>
-        <Link :href="$route('admin.users.create')" class="btn btn-primary">
-            Create a User
-        </Link>
+    <PageHeader :enableBackButton="true" :backButtonUrl="$route('admin.users.index')">
+        <template v-slot:pageTitle>Add New User</template>
+        <template v-slot:actionButtons>
+            <button type="submit" form="user-form" class="btn btn-primary">
+                Create User
+            </button>
+        </template>
+    </PageHeader>
+    <div class="page-body">
+        <div class="card">
+            <div class="card-body">
+                <user-form
+                    :action="$route('admin.users.store')"
+                >
+                </user-form>
+            </div>
+        </div>
     </div>
-    <user-form
-        :action="$route('admin.users.store')"
-    ></user-form>
 </template>
 
 <script setup>

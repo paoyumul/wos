@@ -20,12 +20,14 @@ mix.webpackConfig({
 mix
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/web.js', 'public/js')
+    .js('resources/js/tabler.js', 'public/js')
     .vue()
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss/nesting'),
         require('tailwindcss'),
     ])
+    .sass('resources/scss/tabler.scss', 'public/css')
     .copyDirectory([
         'resources/images/*.png',
         'resources/images/*.jpg',

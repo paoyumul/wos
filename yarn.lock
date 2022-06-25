@@ -3330,6 +3330,11 @@ imagemin@^7.0.1:
     p-pipe "^3.0.0"
     replace-ext "^1.0.0"
 
+imask@^6.4.2:
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.4.2.tgz#f1c67e6961640bf5b09d7b4a34dcf4f9a3df7e22"
+  integrity sha512-xvEgbTdk6y2dW2UAysq0NRPmO6PuaXM5NHIt4TXEJEwXUHj26M0p/fXqyrSJdNXFaGVOtqYjPRnNdrjQQhDuuA==
+
 img-loader@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/img-loader/-/img-loader-4.0.0.tgz#f41fb0737cc8e1d6a8c242f48c29a443640e0638"

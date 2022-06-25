@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="form[props.method](props.action)" method="POST">
+    <form id="user-form" @submit.prevent="form[props.method](props.action)" method="POST">
         <div class="form-group mb-3">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" class="form-control" v-model="form.name">
@@ -12,7 +12,6 @@
             <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone" class="form-control" v-model="form.phone">
         </div>
-        <button type="submit" class="btn btn-primary">{{ props.buttonText }}</button>
     </form>
 </template>
 

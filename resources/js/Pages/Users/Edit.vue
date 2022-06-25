@@ -1,21 +1,35 @@
 <template>
-    <div class="flex items-center justify-between mb-4">
-        <h1 class="text-2xl mb-0">Edit {{ user.name }} Profile</h1>
-        <Link :href="$route('admin.users.create')" class="btn btn-primary">
-            Create a User
-        </Link>
+    <PageHeader :enableBackButton="true" :backButtonUrl="$route('admin.users.index')">
+        <template v-slot:pageTitle>Edit {{ data.user.name }} Profile</template>
+        <template v-slot:actionButtons>
+            <button type="submit" form="user-form" class="btn btn-primary">
+                Update Profile
+            </button>
+        </template>
+    </PageHeader>
+    <div class="page-body">
+        <div class="card">
+            <div class="card-body">
+                <user-form
+                    :user="data.user"
+                    :action="$route('admin.users.update', data.user.id)"
+                    method="patch"
+                    button-text="Update User Profile"
+                >
+                </user-form>
+            </div>
+        </div>
     </div>
-    <user-form
-        :user="user"
-        :action="$route('admin.users.update', user.id)"
-        method="patch"
-        button-text="Update User Profile"
-    ></user-form>
 </template>
 
 <script setup>
 import { useForm, usePage, Link } from '@inertiajs/inertia-vue3';
 import UserForm from './Form';
 
-const user = usePage().props.value.user;
+defineProps({
+    data: {
+        type: Object,
+        default: () => {},
+    },
+});
 </script>

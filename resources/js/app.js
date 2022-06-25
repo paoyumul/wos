@@ -2,6 +2,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Layout from './Pages/Layout';
+import PageHeader from './Components/PageHeader';
 
 InertiaProgress.init();
 
@@ -15,6 +16,7 @@ createInertiaApp({
         let app = createApp({render: () => h(App, props)})
             .use(plugin);
 
+        app.component('PageHeader', PageHeader);
         app.config.globalProperties.$route = route;
 
         app.mount(el);

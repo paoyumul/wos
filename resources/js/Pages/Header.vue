@@ -1,75 +1,62 @@
 <template>
-    <nav class="bg-white py-3 text-md text-gray-900 shadow-sm">
-        <div class="container flex items-center">
-            <Link class="text-lg mr-4 whitespace-nowrap font-semibold" href="/">
-                WOS Dental Clinic
-            </Link>
-
-            <div class="w-full flex align-item-center justify-between" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="flex">
-                    <template v-if="user">
-                        <li class="mr-4">
-                            <Link href="/admin/users">Users</Link>
-                        </li>
-                        <li class="mr-4">
-                            <Link href="/admin/services">Services</Link>
-                        </li>
-                        <li class="mr-4">
-                            <Link href="/admin/schedules">Schedules</Link>
-                        </li>
-                        <li class="mr-4">
-                            <Link href="/admin/appointments">Appointments</Link>
-                        </li>
-                    </template>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="flex">
-                    <!-- Authentication Links -->
-                    <template v-if="!user">
-                        <li class="ml-4">
-                            <Link :href="$route('login')">Login</Link>
-                        </li>
-                        <li class="ml-4">
-                            <Link :href="$route('register')">Register</Link>
-                        </li>
-                    </template>
-                    <template v-else>
-                        <li class="ml-4 relative">
-                            <a
-                                id="navbarDropdown"
-                                class=""
-                                href="#"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                            >
-                                {{ user.name }}
-                            </a>
-
-                            <div class="absolute bg-white border border-gray-100 w-full">
-                                <button
-                                    class="py-1 px-2"
-                                    form="logout-form"
-                                >
-                                    Logout
-                                </button>
-
-                                <form
-                                    id="logout-form"
-                                    class="d-none"
-                                    @submit.prevent="form.post('/logout')"
-                                >
-                                </form>
+    <div class="sticky-top">
+        <header class="navbar navbar-expand-md navbar-light sticky-top d-print-none">
+            <div class="container-xl">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                    <a href="." class="keychainify-checked">
+                        WOS Dental Clinic
+                        <!--<img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">-->
+                    </a>
+                </h1>
+                <div class="navbar-nav flex-row order-md-last">
+                    <div class="nav-item dropdown">
+                        <a
+                            href="#"
+                            class="nav-link d-flex lh-1 text-reset p-0"
+                            data-bs-toggle="dropdown"
+                            aria-label="Open user menu"
+                        >
+                            <div class="d-none d-xl-block ps-2">
+                                <div>{{ user.name }}</div>
+                                <div class="mt-1 small text-muted">Admin</div>
                             </div>
-                        </li>
-                    </template>
-                </ul>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <a href="#" class="dropdown-item">Profile &amp; account</a>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="navbar-expand-md">
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <div class="navbar navbar-light">
+                    <div class="container-xl">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <Link class="nav-link" href="/">
+                                    <span class="nav-link-title">
+                                        Home
+                                    </span>
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :href="$route('admin.users.index')">
+                                    <span class="nav-link-title">
+                                        Users
+                                    </span>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
 </template>
 
 <script setup>

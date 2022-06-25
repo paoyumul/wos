@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/web.js": "/js/web.js",
+    "/js/tabler.js": "/js/tabler.js",
+    "/css/tabler.css": "/css/tabler.css",
     "/css/app.css": "/css/app.css",
     "/images/logo.jpg": "/images/logo.jpg"
 }
