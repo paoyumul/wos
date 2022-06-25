@@ -3,14 +3,42 @@
     @apply px-2;
     @apply h-5;
     @apply rounded;
-    @apply inline-block;
+    @apply inline-flex;
+    @apply items-center;
+    @apply border;
+    @apply border-gray-500;
+    @apply bg-gray-500;
+    @apply text-white;
+
+    &.btn-round {
+        @apply rounded-full;
+    }
+
+    &.btn-outline {
+        @apply bg-transparent;
+        @apply text-gray-500;
+    }
+
+    &.btn-sm {
+        @apply h-4;
+        @apply text-sm;
+    }
 
     &.btn-primary {
         @apply bg-base;
         @apply text-white;
+        @apply border-base;
         @apply focus:outline-none;
         @apply focus:ring-2;
         @apply focus:ring-offset-2;
         @apply focus:ring-base;
+
+        &.btn-outline {
+            @apply bg-white;
+            @apply text-base;
+            @apply border;
+            @apply border-base;
+            @apply text-sm;
+        }
     }
 }

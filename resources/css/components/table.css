@@ -1,0 +1,37 @@
+.table-container {
+    @apply inline-block min-w-full shadow-sm rounded overflow-hidden;
+    @apply border-gray-300;
+}
+
+table {
+    @apply w-full;
+
+    thead {
+        tr {
+            th {
+                @apply px-2;
+                @apply py-2;
+                @apply border-b-4;
+                @apply bg-white;
+                @apply border-gray-100;
+                @apply text-left;
+                @apply text-xs;
+                @apply font-bold;
+                @apply uppercase;
+                @apply tracking-wider;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                @apply px-2;
+                @apply py-2;
+                @apply border-b;
+                @apply border-gray-100;
+                @apply bg-white;
+            }
+        }
+    }
+}

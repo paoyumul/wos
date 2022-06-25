@@ -22,9 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('admin', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -33,9 +30,6 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
     Route::get('admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
     Route::patch('admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,8 +1,8 @@
 <template>
-    <nav class="bg-white border-b border-gray-100 py-3 text-md text-gray-900">
+    <nav class="bg-white py-3 text-md text-gray-900 shadow-sm">
         <div class="container flex items-center">
             <Link class="text-lg mr-4 whitespace-nowrap font-semibold" href="/">
-                Wos Dental Clinic
+                WOS Dental Clinic
             </Link>
 
             <div class="w-full flex align-item-center justify-between" id="navbarSupportedContent">

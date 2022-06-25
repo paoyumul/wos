@@ -17,6 +17,20 @@ class UserController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return inertia('Users/Create');
+    }
+
+    public function store()
+    {
+        User::create(request()->all());
+
+        session()->flash('message', 'Post deleted successfully!');
+
+        return back();
+    }
+
     public function edit(User $user)
     {
         return inertia('Users/Edit', [
@@ -35,8 +49,8 @@ class UserController extends Controller
     {
         $user->delete();
 
-        $request->session()->flash('success', 'Post deleted successfully!');
+        $request->session()->flash('message', 'Post deleted successfully!');
 
-        return redirect()->route('admin.users.index');
+        return back();
     }
 }

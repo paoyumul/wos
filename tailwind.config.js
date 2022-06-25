@@ -56,12 +56,10 @@ module.exports = {
             base: {
                 DEFAULT: '#2370cc',
             },
-            accent: {
-                DEFAULT: '#f46a38',
-            },
             white: '#ffffff',
             gray: {
                 '100': '#eff4fd',
+                '300': '#e3f1ff',
                 '500': '#99a2ac',
                 '700': '#525257',
                 '900': '#2d3e4f',
@@ -92,13 +90,6 @@ module.exports = {
             '40': '320px',
             '50': '400px',
         },
-        borderRadius: {
-            'none': 0,
-            'sm': '5px',
-            'DEFAULT': '8px',
-            'md': '10px',
-            'lg': '20px',
-        },
         extend: {
             zIndex: {
                 '1': '1',
@@ -106,6 +97,13 @@ module.exports = {
                 '3': '3',
                 '4': '4',
                 '5': '5',
+            },
+            borderRadius: {
+                'none': 0,
+                'sm': '5px',
+                'DEFAULT': '8px',
+                'md': '10px',
+                'lg': '20px',
             },
         },
     },
