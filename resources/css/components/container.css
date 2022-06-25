@@ -1,0 +1,11 @@
+@layer components {
+    .container {
+        @apply xs:max-w-full;
+        @apply sm:max-w-full;
+        @apply md:max-w-[960px];
+        @apply lg:max-w-[1245px];
+        @apply xl:max-w-[1245px];
+        @apply 2xl:max-w-[1328px];
+        @apply 3xl:max-w-[1328px];
+    }
+}

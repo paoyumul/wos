@@ -22,7 +22,7 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.phone }}</td>
                                 <td>
-                                    <a :href="`/admin/users/${user.id}/edit`" class="btn btn-white btn-sm me-1">Edit</a>
+                                    <Link :href="`/admin/users/${user.id}/edit`" class="btn btn-white btn-sm me-1">Edit</Link>
                                     <Link :href="`/admin/users/${user.id}`" method="delete" as="button" type="button" class="btn btn-white btn-sm me-1">Delete</Link>
                                 </td>
                             </tr>

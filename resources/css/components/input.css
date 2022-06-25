@@ -1,0 +1,19 @@
+label {
+    @apply text-sm;
+    @apply font-normal;
+    @apply text-gray-700;
+}
+
+input {
+    @apply h-5;
+    @apply border;
+    @apply border-gray-100;
+    @apply px-2;
+    @apply leading-none;
+    @apply w-full;
+    @apply rounded;
+    @apply focus:outline-none;
+    @apply focus:ring-base;
+    @apply focus:ring-1;
+    @apply focus:border-base;
+}

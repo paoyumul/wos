@@ -1,31 +1,15 @@
 <template>
     <div class="container flex justify-center py-8">
         <div>
-            <h1 class="text-center text-3xl font-bold">Register</h1>
+            <h1 class="text-center text-3xl font-bold">Reset Password</h1>
             <form
                 class="bg-white max-w-[480px] p-7 rounded border-gray-100"
-                @submit.prevent="form.post('/register')"
+                @submit.prevent="form.post($route('password.update'))"
             >
+                <input type="hidden" name="token" :value="form.token">
+
                 <div class="mb-3">
-                    <label for="name">
-                        Name
-                    </label>
-                    <input
-                        id="name"
-                        type="text"
-                        class="form-control"
-                        :class="{'is-invalid': form.errors.email}"
-                        name="name"
-                        required
-                        autocomplete="name"
-                        autofocus
-                        v-model="form.name"
-                    >
-                </div>
-                <div class="mb-3">
-                    <label for="email">
-                        Email
-                    </label>
+                    <label for="email">Email Address</label>
                     <input
                         id="email"
                         type="email"
@@ -34,16 +18,16 @@
                         name="email"
                         required
                         autocomplete="email"
+                        autofocus
                         v-model="form.email"
                     >
                     <div v-if="form.errors.email" class="invalid-feedback" role="alert">
                         {{ form.errors.email }}
                     </div>
                 </div>
+
                 <div class="mb-3">
-                    <label for="password">
-                        Password
-                    </label>
+                    <label for="password">Password</label>
                     <input
                         id="password"
                         type="password"
@@ -58,44 +42,41 @@
                         {{ form.errors.password }}
                     </div>
                 </div>
+
                 <div class="mb-3">
-                    <label
-                        for="password-confirm"
-                        class="col-md-4 col-form-label text-md-end"
-                    >
+                    <label for="password-confirm">
                         Confirm Password
                     </label>
-                    <input
-                        id="password-confirm"
-                        type="password"
-                        class="form-control"
-                        name="password_confirmation"
-                        required
-                        autocomplete="new-password"
-                        v-model="form.password_confirmation"
-                    >
-                </div>
-                <div class="row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary w-full">
-                            Register
-                        </button>
+
+                    <div class="col-md-6">
+                        <input
+                            id="password-confirm"
+                            type="password"
+                            class="form-control"
+                            name="password_confirmation"
+                            required
+                            autocomplete="new-password"
+                            v-model="form.password_confirmation"
+                        >
                     </div>
                 </div>
+
+                <button type="submit" class="btn btn-primary w-full">
+                    Reset Password
+                </button>
             </form>
         </div>
     </div>
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm, usePage } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
     _token: document.querySelector('meta[name="csrf-token"]').content,
-    name: null,
+    token: usePage().props.value.token,
     email: null,
     password: null,
     password_confirmation: null,
-    remember: false,
 });
 </script>

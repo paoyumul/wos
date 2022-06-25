@@ -1,11 +1,11 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                WOS Dental Clinic
-            </a>
+    <nav class="bg-white border-b border-gray-100 py-3 text-md text-gray-900">
+        <div class="container flex items-center">
+            <Link class="text-lg mr-4 whitespace-nowrap font-semibold" href="/">
+                Wos Dental Clinic
+            </Link>
             <button
-                class="navbar-toggler"
+                class="d-none"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"
@@ -16,41 +16,41 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="w-full flex align-item-center justify-between" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
+                <ul class="flex">
                     <template v-if="user">
-                        <li class="nav-item">
-                            <Link href="/admin/users" class="nav-link">Users</Link>
+                        <li class="mr-4">
+                            <Link href="/admin/users">Users</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link href="/admin/services" class="nav-link">Services</Link>
+                        <li class="mr-4">
+                            <Link href="/admin/services">Services</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link href="/admin/schedules" class="nav-link">Schedules</Link>
+                        <li class="mr-4">
+                            <Link href="/admin/schedules">Schedules</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link href="/admin/appointments" class="nav-link">Appointments</Link>
+                        <li class="mr-4">
+                            <Link href="/admin/appointments">Appointments</Link>
                         </li>
                     </template>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
+                <ul class="flex">
                     <!-- Authentication Links -->
                     <template v-if="!user">
-                        <li class="nav-item">
-                            <Link href="/login" class="nav-link">Login</Link>
+                        <li class="ml-4">
+                            <Link href="/login">Login</Link>
                         </li>
-                        <li class="nav-item">
-                            <Link href="/register" class="nav-link">Register</Link>
+                        <li class="ml-4">
+                            <Link href="/register">Register</Link>
                         </li>
                     </template>
                     <template v-else>
-                        <li class="nav-item dropdown">
+                        <li class="ml-4 relative">
                             <a
                                 id="navbarDropdown"
-                                class="nav-link dropdown-toggle"
+                                class=""
                                 href="#"
                                 role="button"
                                 data-bs-toggle="dropdown"
@@ -60,9 +60,9 @@
                                 {{ user.name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <div class="absolute bg-white border border-gray-100 w-full">
                                 <button
-                                    class="dropdown-item"
+                                    class="py-1 px-2"
                                     form="logout-form"
                                 >
                                     Logout

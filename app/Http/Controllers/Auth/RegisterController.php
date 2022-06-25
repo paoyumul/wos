@@ -71,7 +71,6 @@ class RegisterController extends Controller
         ]);
     }
 
-
     /**
      * Show the application registration form.
      *
