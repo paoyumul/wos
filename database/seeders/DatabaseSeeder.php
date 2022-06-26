@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         User::factory(50)->create();
         $this->call([
             ServiceSeeder::class,
+            ScheduleSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
