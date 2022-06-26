@@ -1,8 +1,19 @@
 <template>
     <form id="user-form" @submit.prevent="form[props.method](props.action)" method="POST">
         <div class="form-group mb-3">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" class="form-control" v-model="form.name">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" v-model="form.first_name">
+        </div>
+        <div class="form-group mb-3">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" v-model="form.last_name">
+        </div>
+        <div class="form-group mb-3">
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender" class="form-control" v-model="form.gender">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
         </div>
         <div class="form-group mb-3">
             <label for="email">Email</label>
@@ -21,7 +32,8 @@ import { useForm, usePage } from '@inertiajs/inertia-vue3';
 const props = defineProps({
     user: {
         type: Object,
-        default: () => {},
+        default: () => {
+        },
     },
     action: {
         type: String,
@@ -33,12 +45,14 @@ const props = defineProps({
     buttonText: {
         type: String,
         default: 'Create',
-    }
+    },
 });
 
 const form = useForm({
     _token: usePage().props.value.csrf_token,
-    name: props.user?.name,
+    first_name: props.user?.first_name,
+    last_name: props.user?.last_name,
+    gender: props.user?.gender,
     email: props.user?.email,
     phone: props.user?.phone,
 });

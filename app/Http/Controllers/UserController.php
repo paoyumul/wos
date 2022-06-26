@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(30);
+        Log::debug($request->search);
+        $users = User::search($request->search)
+            ->paginate(30);
 
         return inertia('Users/Index', [
             'data' => [

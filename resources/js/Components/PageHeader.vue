@@ -22,10 +22,25 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-end mt-3">
+        <div class="col-lg-3">
+            <form class="input-icon my-3 my-lg-0" @submit.prevent="form.get($route('admin.users.index'))">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." v-model="form.search">
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">Go</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link, useForm } from '@inertiajs/inertia-vue3';
+import { ref } from 'vue';
 
 const props = defineProps({
     enableBackButton: {
@@ -36,5 +51,17 @@ const props = defineProps({
         type: String,
         default: '#',
     },
+    enableSearchField: {
+        type: Boolean,
+        default: false,
+    },
+    searchUrl: {
+        type: String,
+        default: '#',
+    }
+});
+
+const form = useForm({
+    search: '',
 });
 </script>

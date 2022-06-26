@@ -1,6 +1,6 @@
 <template>
     <PageHeader :enableBackButton="true" :backButtonUrl="$route('admin.users.index')">
-        <template v-slot:pageTitle>Edit {{ data.user.name }} Profile</template>
+        <template v-slot:pageTitle>Edit {{ data.user.first_name }} Profile</template>
         <template v-slot:actionButtons>
             <button type="submit" form="user-form" class="btn btn-primary">
                 Update Profile

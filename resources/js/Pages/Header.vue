@@ -20,7 +20,7 @@
                             aria-label="Open user menu"
                         >
                             <div class="d-none d-xl-block ps-2">
-                                <div>{{ user.name }}</div>
+                                <div>{{ user.first_name }} {{ user.last_name }}</div>
                                 <div class="mt-1 small text-muted">Admin</div>
                             </div>
                         </a>

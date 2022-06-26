@@ -1,19 +1,22 @@
 <template>
-    <PageHeader :enableBackButton="false">
-        <template v-slot:pageTitle>Users</template>
+    <PageHeader :enableBackButton="false" :enableSearchField="true" :searchUrl="$route('admin.users.index')">
+        <template v-slot:pageTitle>All Users</template>
         <template v-slot:actionButtons>
             <Link :href="$route('admin.users.create')" class="btn btn-primary ml-3">
-                Add New
+                Add New User
             </Link>
         </template>
     </PageHeader>
+
     <div class="page-body">
         <div class="box">
             <div class="card">
                 <table class="table table-vcenter card-table">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Actions</th>
@@ -21,7 +24,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="user in data.users" :key="user.id">
-                            <td>{{ user.name }}</td>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.gender }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
                             <td>
