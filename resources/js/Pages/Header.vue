@@ -65,6 +65,13 @@
                                     </span>
                                 </Link>
                             </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :href="$route('admin.appointments.index')">
+                                    <span class="nav-link-title">
+                                        Appointments
+                                    </span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

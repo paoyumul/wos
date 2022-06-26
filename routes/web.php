@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -48,4 +49,11 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('admin/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('admin.schedules.edit');
     Route::post('admin/schedules', [ScheduleController::class, 'store'])->name('admin.schedules.store');
     Route::patch('admin/schedules/{schedule}', [ScheduleController::class, 'update'])->name('admin.schedules.update');
+
+    Route::delete('admin/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('admin.appointments.delete');
+    Route::get('admin/appointments', [AppointmentController::class, 'index'])->name('admin.appointments.index');
+    Route::get('admin/appointments/create', [AppointmentController::class, 'create'])->name('admin.appointments.create');
+    Route::get('admin/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('admin.appointments.edit');
+    Route::post('admin/appointments', [AppointmentController::class, 'store'])->name('admin.appointments.store');
+    Route::patch('admin/appointments/{appointment}', [AppointmentController::class, 'update'])->name('admin.appointments.update');
 });

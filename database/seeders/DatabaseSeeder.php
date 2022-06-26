@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ServiceSeeder::class,
             ScheduleSeeder::class,
+            AppointmentSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

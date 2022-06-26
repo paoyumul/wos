@@ -36,7 +36,7 @@ class ServiceController extends Controller
             'name' => 'required|max:255',
             'price' => 'required|numeric',
         ]);
-        
+
         Service::create($request->all());
 
         session()->flash('message', 'The service has been created.');
