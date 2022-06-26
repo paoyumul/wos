@@ -10,7 +10,6 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        Log::debug($request->search);
         $users = User::search($request->search)
             ->paginate(30);
 
