@@ -23,8 +23,8 @@
                     </thead>
                     <tbody>
                         <tr v-for="appointment in data.appointments" :key="appointment.id">
-                            <td>{{ appointment.date }}</td>
-                            <td>{{ appointment.time_from }} - {{ appointment.time_to }}</td>
+                            <td>{{ appointment.schedule.date }}</td>
+                            <td>{{ appointment.schedule.time_from }} - {{ appointment.schedule.time_to }}</td>
                             <td>{{ appointment.user.first_name }} {{ appointment.user.last_name }}</td>
                             <td>{{ appointment.service.name }}</td>
                             <td>

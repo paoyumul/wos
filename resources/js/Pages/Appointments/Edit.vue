@@ -16,6 +16,7 @@
                     method="patch"
                     :services="data.services"
                     :users="data.users"
+                    :schedules="data.schedules"
                 >
                 </appointment-form>
             </div>

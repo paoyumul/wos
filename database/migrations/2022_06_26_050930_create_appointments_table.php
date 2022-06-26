@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -21,9 +22,8 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Service::class);
-            $table->date('date');
-            $table->time('time_from');
-            $table->time('time_to');
+            $table->foreignIdFor(Schedule::class);
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

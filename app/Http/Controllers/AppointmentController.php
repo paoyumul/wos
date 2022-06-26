@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class AppointmentController extends Controller
     {
         $this->authorize('viewAny', Appointment::class);
 
-        $appointments = Appointment::with('user', 'service')->paginate(30);
+        $appointments = Appointment::with('user', 'service', 'schedule')->paginate(30);
 
         return inertia('Appointments/Index', [
             'data' => [
@@ -29,7 +30,8 @@ class AppointmentController extends Controller
 
         return inertia('Appointments/Create', [
             'data' => [
-                'services' => Service::orderBy('name', 'asc')->get(['id', 'name']),
+                'services' => Service::orderBy('name', 'asc')->get(['id', 'name', 'price']),
+                'schedules' => Schedule::orderBy('date', 'desc')->orderBy('time_from', 'desc')->get(['id', 'date', 'time_from']),
                 'users' => User::orderBy('first_name', 'asc')->get(['id', 'first_name', 'last_name']),
             ],
         ]);
@@ -42,9 +44,7 @@ class AppointmentController extends Controller
         $request->validate([
             'user_id' => 'required|numeric',
             'service_id' => 'required|numeric',
-            'date' => 'required|date',
-            'time_from' => 'required',
-            'time_to' => 'required|after:time_from',
+            'schedule_id' => 'required|numeric',
         ]);
 
         Appointment::create($request->all());
@@ -61,7 +61,8 @@ class AppointmentController extends Controller
         return inertia('Appointments/Edit', [
             'data' => [
                 'appointment' => $appointment,
-                'services' => Service::orderBy('name', 'asc')->get(['id', 'name']),
+                'services' => Service::orderBy('name', 'asc')->get(['id', 'name', 'price']),
+                'schedules' => Schedule::orderBy('date', 'desc')->orderBy('time_from', 'desc')->get(['id', 'date', 'time_from']),
                 'users' => User::orderBy('first_name', 'asc')->get(['id', 'first_name', 'last_name']),
             ],
         ]);
@@ -74,9 +75,7 @@ class AppointmentController extends Controller
         $request->validate([
             'user_id' => 'required|numeric',
             'service_id' => 'required|numeric',
-            'date' => 'required|date',
-            'time_from' => 'required',
-            'time_to' => 'required|after:time_from',
+            'schedule_id' => 'required|numeric',
         ]);
 
         $appointment->update($request->all());

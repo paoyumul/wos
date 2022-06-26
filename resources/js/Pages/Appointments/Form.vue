@@ -20,12 +20,14 @@
         <div class="form-group mb-3">
             <label for="service">Service</label>
             <select
-                name="" id="service" class="form-control"
+                name=""
+                id="service"
+                class="form-control"
                 :class="{'is-invalid': $page.props.errors.service_id}"
                 v-model="form.service_id"
             >
                 <option v-for="service in services" :value="service.id">
-                    {{ service.name }}
+                    {{ service.name }} - {{ service.price }}
                 </option>
             </select>
             <div class="invalid-feedback" v-if="$page.props.errors.service_id">
@@ -33,45 +35,35 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="date">Date</label>
-            <input
+            <label for="schedule">Select a Schedule</label>
+            <select
+                name=""
+                id="schedule"
+                class="form-control"
+                :class="{'is-invalid': $page.props.errors.schedule_id}"
+                v-model="form.schedule_id"
+            >
+                <option v-for="schedule in schedules" :value="schedule.id">
+                    {{ schedule.date }} {{ schedule.time_from }}
+                </option>
+            </select>
+            <div class="invalid-feedback" v-if="$page.props.errors.schedule_id">
+                {{ $page.props.errors.schedule_id }}
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="date">Notes</label>
+            <textarea
                 type="date"
                 name="date"
                 id="date"
                 class="form-control"
-                :class="{'is-invalid': $page.props.errors.date}"
-                v-model="form.date"
-            >
-            <div class="invalid-feedback" v-if="$page.props.errors.date">
-                {{ $page.props.errors.date }}
-            </div>
-        </div>
-        <div class="form-group mb-3">
-            <label for="time_from">From</label>
-            <input
-                type="time"
-                id="time_from"
-                name="time_from"
-                class="form-control"
-                :class="{'is-invalid': $page.props.errors.time_from}"
-                v-model="form.time_from"
-            >
-            <div class="invalid-feedback" v-if="$page.props.errors.time_from">
-                {{ $page.props.errors.time_from }}
-            </div>
-        </div>
-        <div class="form-group mb-3">
-            <label for="time_from">To</label>
-            <input
-                type="time"
-                id="time_to"
-                name="time_to"
-                class="form-control"
-                :class="{'is-invalid': $page.props.errors.time_to}"
-                v-model="form.time_to"
-            >
-            <div class="invalid-feedback" v-if="$page.props.errors.time_to">
-                {{ $page.props.errors.time_to }}
+                :class="{'is-invalid': $page.props.errors.note}"
+                v-model="form.notes"
+                style="height: 200px"
+            ></textarea>
+            <div class="invalid-feedback" v-if="$page.props.errors.note">
+                {{ $page.props.errors.note }}
             </div>
         </div>
     </form>
@@ -102,15 +94,18 @@ const props = defineProps({
         type: Array,
         default: () => [],
     },
+    schedules: {
+        type: Array,
+        default: () => [],
+    },
 });
 
 const form = useForm({
     _token: usePage().props.value.csrf_token,
     user_id: props.appointment?.user_id,
     service_id: props.appointment?.service_id,
-    date: props.appointment?.date,
-    time_from: props.appointment?.time_from,
-    time_to: props.appointment?.time_to,
+    schedule_id: props.appointment?.schedule_id,
+    notes: props.appointment?.notes,
 });
 
 const options = computed(() => {

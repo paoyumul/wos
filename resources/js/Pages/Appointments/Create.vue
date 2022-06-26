@@ -14,6 +14,7 @@
                     :action="$route('admin.appointments.store')"
                     :services="data.services"
                     :users="data.users"
+                    :schedules="data.schedules"
                 >
                 </appointment-form>
             </div>

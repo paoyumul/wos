@@ -16,7 +16,7 @@ class ScheduleFactory extends Factory
         return [
             'date' => date('Y-m-d'),
             'time_from' => '08:00',
-            'time_to' => '17:00',
+            'time_to' => '09:00',
         ];
     }
 }

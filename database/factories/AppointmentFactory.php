@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,6 +22,9 @@ class AppointmentFactory extends Factory
             },
             'service_id' => function () {
                 return Service::factory()->create()->id;
+            },
+            'schedule_id' => function () {
+                return Schedule::factory()->create()->id;
             },
             'date' => date('Y-m-d'),
             'time_from' => '08:00:00',
