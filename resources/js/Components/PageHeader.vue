@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-end mt-3">
+    <div class="row justify-content-end mt-3" v-if="enableSearchField">
         <div class="col-lg-3">
             <form class="input-icon my-3 my-lg-0" @submit.prevent="form.get($route('admin.users.index'))">
                 <div class="form-group">

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,11 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
     Route::patch('admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+
+    Route::delete('admin/services/{service}', [ServiceController::class, 'destroy'])->name('admin.services.delete');
+    Route::get('admin/services', [ServiceController::class, 'index'])->name('admin.services.index');
+    Route::get('admin/services/create', [ServiceController::class, 'create'])->name('admin.services.create');
+    Route::get('admin/services/{service}/edit', [ServiceController::class, 'edit'])->name('admin.services.edit');
+    Route::post('admin/services', [ServiceController::class, 'store'])->name('admin.services.store');
+    Route::patch('admin/services/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 });

@@ -51,6 +51,13 @@
                                     </span>
                                 </Link>
                             </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" :href="$route('admin.services.index')">
+                                    <span class="nav-link-title">
+                                        Services
+                                    </span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
