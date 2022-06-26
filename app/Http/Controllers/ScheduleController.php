@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
 {
@@ -11,7 +12,9 @@ class ScheduleController extends Controller
     {
         $this->authorize('viewAny', Schedule::class);
 
-        $schedules = Schedule::paginate(30);
+        $schedules = Schedule::orderBy('date', 'desc')
+            ->orderBy('time_from', 'desc')
+            ->paginate(30);
 
         return inertia('Schedules/Index', [
             'data' => [
@@ -33,14 +36,17 @@ class ScheduleController extends Controller
         $this->authorize('create', Schedule::class);
 
         $request->validate([
-            'date' => 'required|date',
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
             'time_from' => 'required',
             'time_to' => 'required|after:time_from',
         ]);
 
-        Schedule::create($request->all());
+        $schedules = Schedule::generate($request);
 
-        session()->flash('message', 'The schedule has been created.');
+        DB::table('schedules')->insert($schedules);
+
+        session()->flash('message', 'The schedules have been generated.');
 
         return back();
     }
