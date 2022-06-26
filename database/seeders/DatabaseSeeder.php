@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
 
         $this->truncateTables();
 
-        User::factory(50)->create();
+        User::factory(1)->create([
+            'role' => 'Admin',
+            'email' => 'admin@admin.com',
+        ]);
+        User::factory(49)->create();
         $this->call([
             ServiceSeeder::class,
             ScheduleSeeder::class,

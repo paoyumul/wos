@@ -1,5 +1,5 @@
 <template>
-    <div>
-        Dashboard
-    </div>
+    <PageHeader :enableBackButton="false" :enableSearchField="false">
+        <template v-slot:pageTitle>Dashboard</template>
+    </PageHeader>
 </template>

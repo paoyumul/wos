@@ -21,12 +21,12 @@
                         >
                             <div class="d-none d-xl-block ps-2">
                                 <div>{{ user.first_name }} {{ user.last_name }}</div>
-                                <div class="mt-1 small text-muted">Admin</div>
+                                <div class="mt-1 small text-muted">{{ user.role }}</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <a href="#" class="dropdown-item">Profile &amp; account</a>
-                            <a href="#" class="dropdown-item">Logout</a>
+                            <Link :href="$route('logout')" class="dropdown-item" as="button" method="post">Logout</Link>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="container-xl">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <Link class="nav-link" href="/">
+                                <Link class="nav-link" href="/admin">
                                     <span class="nav-link-title">
                                         Home
                                     </span>

@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             'csrf_token' => csrf_token(),
             'auth.user' => function () use ($request) {
                 return $request->user()
-                    ? $request->user()->only('id', 'first_name', 'last_name', 'email')
+                    ? $request->user()->only('id', 'first_name', 'last_name', 'email', 'role')
                     : null;
             },
             'flash' => [
