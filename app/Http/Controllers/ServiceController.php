@@ -32,6 +32,11 @@ class ServiceController extends Controller
     {
         $this->authorize('create', Service::class);
 
+        $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required|numeric',
+        ]);
+        
         Service::create($request->all());
 
         session()->flash('message', 'The service has been created.');
