@@ -30,7 +30,7 @@
                             <td>
                                 <Link
                                     :href="$route('admin.appointments.edit', appointment.id)"
-                                    class="btn btn-primary btn-round btn-outline me-2"
+                                    class="btn btn-primary btn-round btn-sm btn-outline me-2"
                                 >
                                     Edit
                                 </Link>
@@ -39,7 +39,7 @@
                                     method="delete"
                                     as="button"
                                     type="button"
-                                    class="btn btn-round btn-outline"
+                                    class="btn btn-round btn-outline btn-sm"
                                 >
                                     Delete
                                 </Link>

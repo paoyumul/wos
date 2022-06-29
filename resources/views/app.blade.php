@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/tabler.css') }}" rel="stylesheet">
-{{--    <link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     @inertiaHead
 </head>

@@ -1,5 +1,6 @@
 .btn {
     @apply text-center;
+    @apply py-0;
     @apply px-2;
     @apply h-5;
     @apply rounded;
