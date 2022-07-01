@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -40,7 +42,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        return array_merge(parent::share($request), [
+        $props = array_merge(parent::share($request), [
             'appName' => config('app.name'),
             'csrf_token' => csrf_token(),
             'auth.user' => function () use ($request) {
@@ -54,5 +56,15 @@ class HandleInertiaRequests extends Middleware
                 },
             ],
         ]);
+
+        if (in_array(optional($request->route())->getName(), ['admin.sales.create', 'admin.sales.edit'])) {
+            $props['clients'] = User::orderBy('first_name', 'asc')->get(['id', 'first_name', 'last_name']);
+        }
+
+        if (in_array(optional($request->route())->getName(), ['admin.sales.create', 'admin.sales.edit'])) {
+            $props['services'] = Service::orderBy('name', 'asc')->get(['id', 'name', 'price']);
+        }
+
+        return $props;
     }
 }

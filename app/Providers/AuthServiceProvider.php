@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Models\Appointment;
+use App\Models\Sale;
 use App\Models\Schedule;
+use App\Models\Service;
 use App\Policies\AppointmentPolicy;
+use App\Policies\SalePolicy;
 use App\Policies\SchedulePolicy;
 use App\Policies\ServicePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Models\Service;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
          Service::class => ServicePolicy::class,
          Schedule::class => SchedulePolicy::class,
          Appointment::class => AppointmentPolicy::class,
+         Sale::class => SalePolicy::class,
     ];
 
     /**

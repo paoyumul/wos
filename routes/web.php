@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
@@ -56,4 +57,11 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('admin/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('admin.appointments.edit');
     Route::post('admin/appointments', [AppointmentController::class, 'store'])->name('admin.appointments.store');
     Route::patch('admin/appointments/{appointment}', [AppointmentController::class, 'update'])->name('admin.appointments.update');
+
+    Route::delete('admin/sales/{sale}', [SaleController::class, 'destroy'])->name('admin.sales.delete');
+    Route::get('admin/sales', [SaleController::class, 'index'])->name('admin.sales.index');
+    Route::get('admin/sales/create', [SaleController::class, 'create'])->name('admin.sales.create');
+    Route::get('admin/sales/{sale}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
+    Route::post('admin/sales', [SaleController::class, 'store'])->name('admin.sales.store');
+    Route::patch('admin/sales/{sale}', [SaleController::class, 'update'])->name('admin.sales.update');
 });
