@@ -1,98 +1,102 @@
 <template>
-    <div class="sticky-top">
-        <header class="navbar navbar-expand-md navbar-light sticky-top d-print-none">
-            <div class="container-xl">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+    <div class="sticky top-0">
+        <header class="bg-white border-b border-gray-100 text-md text-gray-900 h-9">
+            <div class="container h-full flex items-center justify-between">
+                <button
+                    class="navbar-toggler hidden"
+                    type="button"
+                >
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                    <a href="." class="keychainify-checked">
+                <div class="flex">
+                    <a href="#" class="text-lg mr-4 whitespace-nowrap font-semibold">
                         WOS Dental Clinic
-                        <!--<img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">-->
                     </a>
-                </h1>
+                    <ul class="flex">
+                        <li class="nav-item">
+                            <Link class="px-2 text-sm font-medium" href="/admin">
+                                Home
+                            </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link class="px-2 text-sm font-medium" :href="$route('admin.users.index')">
+                                Users
+                            </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link class="px-2 text-sm font-medium" :href="$route('admin.services.index')">
+                                Services
+                            </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link class="px-2 text-sm font-medium" :href="$route('admin.schedules.index')">
+                                Schedules
+                            </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link class="px-2 text-sm font-medium" :href="$route('admin.appointments.index')">
+                                Appointments
+                            </Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link class="px-2 text-sm font-medium" :href="$route('admin.sales.index')">
+                                Sales
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
                 <div class="navbar-nav flex-row order-md-last">
-                    <div class="nav-item dropdown">
+                    <div class="relative">
                         <a
                             href="#"
-                            class="nav-link d-flex lh-1 text-reset p-0"
-                            data-bs-toggle="dropdown"
-                            aria-label="Open user menu"
+                            @click.prevent="showDropdown = !showDropdown"
                         >
-                            <div class="d-none d-xl-block ps-2">
-                                <div>{{ user.first_name }} {{ user.last_name }}</div>
-                                <div class="mt-1 small text-muted">{{ user.role }}</div>
+                            <div>
+                                <div class="leading-none">{{ user.first_name }} {{ user.last_name }}</div>
+                                <div class="mt-0.5 text-xs">{{ user.role }}</div>
                             </div>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="#" class="dropdown-item">Profile &amp; account</a>
-                            <Link :href="$route('logout')" class="dropdown-item" as="button" method="post">Logout</Link>
-                        </div>
+                        <transition
+                            enter-active-class="transition ease-out duration-100"
+                            enter-from-class="transform opacity-0 scale-95"
+                            enter-to-class="transform opacity-100 scale-100"
+                            leave-active-class="transition ease-in duration-75"
+                            leave-from-class="transform opacity-100 scale-100"
+                            leave-to-class="transform opacity-0 scale-95"
+                        >
+                            <div
+                                v-show="showDropdown"
+                                class="origin-top-right absolute right-0 mt-2 w-20 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            >
+                                <div class="py-1">
+                                    <a href="#" class="text-gray-700 block px-2 py-1 text-sm">
+                                        Profile &amp; account
+                                    </a>
+                                    <Link
+                                        :href="$route('logout')"
+                                        class="text-gray-700 block px-2 py-1 text-sm"
+                                        as="button"
+                                        method="post"
+                                    >
+                                        Logout
+                                    </Link>
+                                </div>
+                            </div>
+                        </transition>
                     </div>
                 </div>
             </div>
         </header>
-        <div class="navbar-expand-md">
-            <div class="collapse navbar-collapse" id="navbar-menu">
-                <div class="navbar navbar-light">
-                    <div class="container-xl">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <Link class="nav-link" href="/admin">
-                                    <span class="nav-link-title">
-                                        Home
-                                    </span>
-                                </Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" :href="$route('admin.users.index')">
-                                    <span class="nav-link-title">
-                                        Users
-                                    </span>
-                                </Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" :href="$route('admin.services.index')">
-                                    <span class="nav-link-title">
-                                        Services
-                                    </span>
-                                </Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" :href="$route('admin.schedules.index')">
-                                    <span class="nav-link-title">
-                                        Schedules
-                                    </span>
-                                </Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" :href="$route('admin.appointments.index')">
-                                    <span class="nav-link-title">
-                                        Appointments
-                                    </span>
-                                </Link>
-                            </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" :href="$route('admin.sales.index')">
-                                    <span class="nav-link-title">
-                                        Sales
-                                    </span>
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { Link, usePage, useForm } from '@inertiajs/inertia-vue3';
 
 const user = computed(() => usePage().props.value.auth.user);
 const form = useForm({
     _token: usePage().props.value.csrf_token,
 });
+const showDropdown = ref(false);
 </script>

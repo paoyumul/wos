@@ -1,8 +1,8 @@
 <template>
     <div class="page">
         <app-header></app-header>
-        <div class="page-wrapper">
-            <div class="container-xl">
+        <div class="mt-3">
+            <div class="container">
                 <div class="alert alert-success text-center mt-3" v-if="flashMessage">
                     {{ flashMessage }}
                 </div>
