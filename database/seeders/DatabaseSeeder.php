@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables();
 
         User::factory(1)->create([
+            'first_name' => 'Admin',
+            'last_name' => '',
             'role' => 'Admin',
             'email' => 'admin@admin.com',
         ]);
