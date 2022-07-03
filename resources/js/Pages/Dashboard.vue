@@ -3,7 +3,7 @@
         <template v-slot:pageTitle></template>
     </PageHeader>
     <div class="grid grid-cols-12">
-        <div class="col-span-6">
+        <div class="col-span-6 md:col-span-12">
             <div class="text-lg mb-2" v-if="upcomingAppointments.length">Upcoming Appointments</div>
             <table v-if="upcomingAppointments.length">
                 <thead>
