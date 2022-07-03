@@ -3,20 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Sale::class);
 
-        $sales = Sale::with(['user', 'service'])->paginate(30);
+        $sales = Sale::query()
+            ->with(['user', 'service'])
+            ->when($request->date_from, function (Builder $query, $dateFrom) {
+                $query->where('date', '>=', $dateFrom);
+            })
+            ->when($request->date_to, function (Builder $query, $dateTo) {
+                $query->where('date', '>=', $dateTo);
+            })
+            ->paginate(30)
+            ->withQueryString();
 
         return inertia('Sales/Index', [
             'data' => [
                 'sales' => $sales->items(),
                 'paginator' => $sales,
+                'total_amount' => $sales->sum('amount'),
+                'date_from' => $request->date_from,
+                'date_to' => $request->date_to,
             ],
         ]);
     }
