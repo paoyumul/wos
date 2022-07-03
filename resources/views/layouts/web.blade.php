@@ -97,6 +97,56 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="footer footer-transparent d-print-none mt-auto py-3">
+            <div class="container-xl">
+                <div class="row text-center align-items-center justify-content-center">
+                    <div class="text-lg mb-1">Visit / Contact us</div>
+                    <ul class="list-inline list-inline-dots mb-0">
+                        <li class="list-inline-item">
+                            <a
+                                href="#"
+                                class="link-secondary"
+                            >
+                                Mondays - Saturdays: 9:00am - 5:00pm
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a
+                                href="#"
+                                class="link-secondary"
+                            >
+                                1521 Ma. Clara St. Sta. Cruz, Manila
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a
+                                href="#"
+                                class="link-secondary"
+                            >
+                                1532-D Nisus Bldg. A.H. Lacson St. Sta. Cruz, Manila
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a
+                                href="tel:89499225"
+                                class="link-secondary"
+                            >
+                                8949-9225
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a
+                                href="tel:09276136426"
+                                class="link-secondary"
+                            >
+                                0927-613-6426
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
