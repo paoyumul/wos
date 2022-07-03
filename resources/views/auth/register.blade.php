@@ -11,13 +11,13 @@
                 @csrf
 
                 <div class="row mb-3">
-                    <label for="name">{{ __('Name') }}</label>
+                    <label for="first_name">{{ __('First Name') }}</label>
 
                     <input
-                        id="name"
+                        id="first_name"
                         type="text"
-                        class="form-control @error('name') is-invalid @enderror"
-                        name="name"
+                        class="form-control @error('first_name') is-invalid @enderror"
+                        name="first_name"
                         value="{{ old('name') }}"
                         required
                         autocomplete="name"
