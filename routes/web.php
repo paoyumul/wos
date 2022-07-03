@@ -28,40 +28,44 @@ Route::redirect('/', '/login')->name('home');
 Auth::routes();
 
 Route::middleware(['web', 'auth'])->group(function () {
-    Route::get('admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('admin.dashboard')
+        ->middleware(['patient']);
 
-    Route::delete('admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
-    Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::get('admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
-    Route::get('admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-    Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
-    Route::patch('admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::get('profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 
-    Route::delete('admin/services/{service}', [ServiceController::class, 'destroy'])->name('admin.services.delete');
-    Route::get('admin/services', [ServiceController::class, 'index'])->name('admin.services.index');
-    Route::get('admin/services/create', [ServiceController::class, 'create'])->name('admin.services.create');
-    Route::get('admin/services/{service}/edit', [ServiceController::class, 'edit'])->name('admin.services.edit');
-    Route::post('admin/services', [ServiceController::class, 'store'])->name('admin.services.store');
-    Route::patch('admin/services/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::patch('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
 
-    Route::delete('admin/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('admin.schedules.delete');
-    Route::get('admin/schedules', [ScheduleController::class, 'index'])->name('admin.schedules.index');
-    Route::get('admin/schedules/create', [ScheduleController::class, 'create'])->name('admin.schedules.create');
-    Route::get('admin/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('admin.schedules.edit');
-    Route::post('admin/schedules', [ScheduleController::class, 'store'])->name('admin.schedules.store');
-    Route::patch('admin/schedules/{schedule}', [ScheduleController::class, 'update'])->name('admin.schedules.update');
+    Route::delete('services/{service}', [ServiceController::class, 'destroy'])->name('admin.services.delete');
+    Route::get('services', [ServiceController::class, 'index'])->name('admin.services.index');
+    Route::get('services/create', [ServiceController::class, 'create'])->name('admin.services.create');
+    Route::get('services/{service}/edit', [ServiceController::class, 'edit'])->name('admin.services.edit');
+    Route::post('services', [ServiceController::class, 'store'])->name('admin.services.store');
+    Route::patch('services/{service}', [ServiceController::class, 'update'])->name('admin.services.update');
 
-    Route::delete('admin/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('admin.appointments.delete');
-    Route::get('admin/appointments', [AppointmentController::class, 'index'])->name('admin.appointments.index');
-    Route::get('admin/appointments/create', [AppointmentController::class, 'create'])->name('admin.appointments.create');
-    Route::get('admin/appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('admin.appointments.edit');
-    Route::post('admin/appointments', [AppointmentController::class, 'store'])->name('admin.appointments.store');
-    Route::patch('admin/appointments/{appointment}', [AppointmentController::class, 'update'])->name('admin.appointments.update');
+    Route::delete('schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('admin.schedules.delete');
+    Route::get('schedules', [ScheduleController::class, 'index'])->name('admin.schedules.index');
+    Route::get('schedules/create', [ScheduleController::class, 'create'])->name('admin.schedules.create');
+    Route::get('schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('admin.schedules.edit');
+    Route::post('schedules', [ScheduleController::class, 'store'])->name('admin.schedules.store');
+    Route::patch('schedules/{schedule}', [ScheduleController::class, 'update'])->name('admin.schedules.update');
 
-    Route::delete('admin/sales/{sale}', [SaleController::class, 'destroy'])->name('admin.sales.delete');
-    Route::get('admin/sales', [SaleController::class, 'index'])->name('admin.sales.index');
-    Route::get('admin/sales/create', [SaleController::class, 'create'])->name('admin.sales.create');
-    Route::get('admin/sales/{sale}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
-    Route::post('admin/sales', [SaleController::class, 'store'])->name('admin.sales.store');
-    Route::patch('admin/sales/{sale}', [SaleController::class, 'update'])->name('admin.sales.update');
+    Route::delete('appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('admin.appointments.delete');
+    Route::get('appointments', [AppointmentController::class, 'index'])->name('admin.appointments.index');
+    Route::get('appointments/create', [AppointmentController::class, 'create'])->name('admin.appointments.create');
+    Route::get('appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('admin.appointments.edit');
+    Route::post('appointments', [AppointmentController::class, 'store'])->name('admin.appointments.store');
+    Route::patch('appointments/{appointment}', [AppointmentController::class, 'update'])->name('admin.appointments.update');
+
+    Route::delete('sales/{sale}', [SaleController::class, 'destroy'])->name('admin.sales.delete');
+    Route::get('sales', [SaleController::class, 'index'])->name('admin.sales.index');
+    Route::get('sales/create', [SaleController::class, 'create'])->name('admin.sales.create');
+    Route::get('sales/{sale}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
+    Route::post('sales', [SaleController::class, 'store'])->name('admin.sales.store');
+    Route::patch('sales/{sale}', [SaleController::class, 'update'])->name('admin.sales.update');
 });

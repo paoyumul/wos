@@ -56,4 +56,9 @@ class Schedule extends Model
 
         return $schedules;
     }
+
+    public function appointment()
+    {
+        return $this->hasOne(Appointment::class);
+    }
 }

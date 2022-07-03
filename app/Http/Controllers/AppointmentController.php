@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -14,7 +15,14 @@ class AppointmentController extends Controller
     {
         $this->authorize('viewAny', Appointment::class);
 
-        $appointments = Appointment::with('user', 'service', 'schedule')->paginate(30);
+        if (auth()->user()->role === 'Admin') {
+            $appointments = Appointment::with(['user', 'service', 'schedule'])
+                ->paginate(30);
+        } else {
+            $appointments = Appointment::with(['user', 'service', 'schedule'])
+                ->where('user_id', auth()->user()->id)
+                ->paginate(30);
+        }
 
         return inertia('Appointments/Index', [
             'data' => [
@@ -28,10 +36,15 @@ class AppointmentController extends Controller
     {
         $this->authorize('create', Appointment::class);
 
+        $schedules = Schedule::doesntHave('appointment')
+            ->orderBy('date', 'desc')
+            ->orderBy('time_from', 'desc')
+            ->get(['id', 'date', 'time_from']);
+
         return inertia('Appointments/Create', [
             'data' => [
                 'services' => Service::orderBy('name', 'asc')->get(['id', 'name', 'price']),
-                'schedules' => Schedule::orderBy('date', 'desc')->orderBy('time_from', 'desc')->get(['id', 'date', 'time_from']),
+                'schedules' => $schedules,
                 'users' => User::orderBy('first_name', 'asc')->get(['id', 'first_name', 'last_name']),
             ],
         ]);
@@ -58,11 +71,17 @@ class AppointmentController extends Controller
     {
         $this->authorize('update', $appointment);
 
+        $schedules = Schedule::doesntHave('appointment')
+            ->orWhere('id', $appointment->schedule_id)
+            ->orderBy('date', 'desc')
+            ->orderBy('time_from', 'desc')
+            ->get(['id', 'date', 'time_from']);
+
         return inertia('Appointments/Edit', [
             'data' => [
                 'appointment' => $appointment,
                 'services' => Service::orderBy('name', 'asc')->get(['id', 'name', 'price']),
-                'schedules' => Schedule::orderBy('date', 'desc')->orderBy('time_from', 'desc')->get(['id', 'date', 'time_from']),
+                'schedules' => $schedules,
                 'users' => User::orderBy('first_name', 'asc')->get(['id', 'first_name', 'last_name']),
             ],
         ]);

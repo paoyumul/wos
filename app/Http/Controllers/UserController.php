@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::search($request->search)
-            ->paginate(30);
+        $this->authorize('viewAny', User::class);
+
+        $users = User::paginate(30);
 
         return inertia('Users/Index', [
             'data' => [
@@ -23,12 +23,16 @@ class UserController extends Controller
 
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return inertia('Users/Create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        User::create(request()->all());
+        $this->authorize('create', User::class);
+
+        User::create($request->all());
 
         session()->flash('message', 'Post deleted successfully!');
 
@@ -37,6 +41,10 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
+        $user->load('appointments.schedule', 'appointments.service', 'payments.service');
+
         return inertia('Users/Edit', [
             'data' => [
                 'user' => $user,
@@ -46,6 +54,8 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
+
         $user->update($request->all());
 
         session()->flash('message', 'User profile has been updated.');
@@ -55,6 +65,8 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
+
         $user->delete();
 
         session()->flash('message', 'User profile has been deleted.');

@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return $this->role === 'Assistant';
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }

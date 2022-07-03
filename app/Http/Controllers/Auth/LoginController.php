@@ -61,4 +61,13 @@ class LoginController extends Controller
 
         return Inertia::location(route('login'));
     }
+
+    public function redirectTo()
+    {
+        if (auth()->user()->role !== 'Admin') {
+            return '/appointments';
+        }
+
+        return $this->redirectTo;
+    }
 }

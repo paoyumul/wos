@@ -4,7 +4,9 @@ label {
     @apply text-gray-700;
 }
 
-input {
+input,
+select,
+textarea {
     @apply h-5;
     @apply border;
     @apply border-gray-100;

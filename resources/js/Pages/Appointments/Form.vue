@@ -1,20 +1,32 @@
 <template>
-    <form id="appointment-form" @submit.prevent="form[props.method](props.action, options)" method="POST">
+    <form
+        id="appointment-form"
+        @submit.prevent="form[props.method](props.action, options)"
+        v-if="schedules.length"
+    >
         <div class="form-group mb-3">
-            <label for="user_id">Customers</label>
+            <label for="user_id">Client</label>
             <select
                 name=""
                 id="user_id"
                 class="form-control"
                 :class="{'is-invalid': $page.props.errors.user_id}"
                 v-model="form.user_id"
+                v-if="isAdmin"
             >
-                <option v-for="user in users" :value="user.id">
+                <option v-for="user in users" :value="user.id" :class="{'is-invalid': $page.props.errors.user_id}">
                     {{ user.first_name }} {{ user.last_name }}
                 </option>
             </select>
-            <div class="invalid-feedback" v-if="$page.props.errors.service_id">
-                {{ $page.props.errors.service_id }}
+            <input
+                class="form-control"
+                :value="`${user.first_name} ${user.last_name}`"
+                v-if="!isAdmin"
+                disabled
+                readonly
+            >
+            <div class="invalid-feedback" v-if="$page.props.errors.user_id">
+                {{ $page.props.errors.user_id }}
             </div>
         </div>
         <div class="form-group mb-3">
@@ -67,11 +79,19 @@
             </div>
         </div>
     </form>
+    <div v-else>
+        <div class="text-2xl text-center max-w-[400px] mx-auto py-5">
+            No available schedule yet. Please try again later.
+        </div>
+    </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
+
+const user = usePage().props.value.auth.user;
+const isAdmin = user.role === 'Admin';
 
 const props = defineProps({
     appointment: {
@@ -107,6 +127,10 @@ const form = useForm({
     schedule_id: props.appointment?.schedule_id,
     notes: props.appointment?.notes,
 });
+
+if (!isAdmin) {
+    form.user_id = user.id;
+}
 
 const options = computed(() => {
     if (props.method === 'patch') {

@@ -70,4 +70,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function redirectTo()
+    {
+        if (auth()->user()->role !== 'Admin') {
+            return '/appointments';
+        }
+
+        return $this->redirectTo;
+    }
 }

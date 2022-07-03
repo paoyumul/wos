@@ -12,8 +12,8 @@ class ScheduleController extends Controller
     {
         $this->authorize('viewAny', Schedule::class);
 
-        $schedules = Schedule::orderBy('date', 'desc')
-            ->orderBy('time_from', 'desc')
+        $schedules = Schedule::orderBy('date', 'asc')
+            ->orderBy('time_from', 'asc')
             ->paginate(30);
 
         return inertia('Schedules/Index', [
