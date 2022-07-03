@@ -1,5 +1,5 @@
 <template>
-    <PageHeader :enableBackButton="false" :enableSearchField="true" :searchUrl="$route('admin.schedules.index')">
+    <PageHeader :enableBackButton="false">
         <template v-slot:pageTitle>All Schedules</template>
         <template v-slot:actionButtons>
             <Link :href="$route('admin.schedules.create')" class="btn btn-primary ml-3">

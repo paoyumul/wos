@@ -1,5 +1,5 @@
 <template>
-    <PageHeader :enableBackButton="false" :enableSearchField="true" :searchUrl="$route('admin.appointments.index')">
+    <PageHeader :enableBackButton="false">
         <template v-slot:pageTitle>All Appointments</template>
         <template v-slot:actionButtons>
             <Link :href="$route('admin.appointments.create')" class="btn btn-primary ml-3">
