@@ -11,7 +11,9 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', User::class);
 
-        $users = User::paginate(30);
+        $users = User::where('last_name', 'like', '%'. $request->search.'%')
+            ->orWhere('first_name', 'like', '%'. $request->search.'%')
+            ->paginate(30);
 
         return inertia('Users/Index', [
             'data' => [
