@@ -36,7 +36,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
+    // Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
     Route::patch('users/{user}', [UserController::class, 'update'])->name('admin.users.update');

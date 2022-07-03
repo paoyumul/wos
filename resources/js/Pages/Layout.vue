@@ -2,7 +2,7 @@
     <div class="page">
         <app-header></app-header>
         <div class="mt-3">
-            <div class="container">
+            <div class="container-xl">
                 <div class="alert alert-success text-center mt-3" v-if="flashMessage">
                     {{ flashMessage }}
                 </div>

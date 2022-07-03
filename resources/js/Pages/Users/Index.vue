@@ -2,12 +2,11 @@
     <PageHeader :enableBackButton="false" :enableSearchField="true" :searchUrl="$route('admin.users.index')">
         <template v-slot:pageTitle>All Users</template>
         <template v-slot:actionButtons>
-            <Link :href="$route('admin.users.create')" class="btn btn-primary ml-3">
-                Add New User
-            </Link>
+            <!--<Link :href="$route('admin.users.create')" class="btn btn-primary ml-3">-->
+            <!--    Add New User-->
+            <!--</Link>-->
         </template>
     </PageHeader>
-
     <div class="page-body">
         <div class="box">
             <div class="card">
