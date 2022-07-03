@@ -8,14 +8,10 @@
         </template>
     </PageHeader>
     <div class="page-body">
-        <div class="card">
-            <div class="card-body">
-                <user-form
-                    :action="$route('admin.users.store')"
-                >
-                </user-form>
-            </div>
-        </div>
+        <user-form
+            :action="$route('admin.users.store')"
+        >
+        </user-form>
     </div>
 </template>
 

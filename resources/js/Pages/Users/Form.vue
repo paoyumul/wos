@@ -1,12 +1,24 @@
 <template>
-    <form id="user-form" @submit.prevent="form[props.method](props.action)" method="POST">
+    <form id="user-form" class="row" @submit.prevent="form[props.method](props.action)">
         <div class="form-group mb-3">
             <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" class="form-control" v-model="form.first_name">
+            <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                class="form-control"
+                v-model="form.first_name"
+            >
         </div>
         <div class="form-group mb-3">
             <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" class="form-control" v-model="form.last_name">
+            <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                class="form-control"
+                v-model="form.last_name"
+            >
         </div>
         <div class="form-group mb-3">
             <label for="gender">Gender</label>
@@ -23,11 +35,20 @@
             <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone" class="form-control" v-model="form.phone">
         </div>
+        <div class="form-group mb-3" v-if="isAdmin">
+            <label for="role">Role</label>
+            <select name="role" id="role" class="form-control" v-model="form.role">
+                <option value="Admin">Admin</option>
+                <option value="Patient">Patient</option>
+            </select>
+        </div>
     </form>
 </template>
 
 <script setup>
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
+
+const isAdmin = usePage().props.value.auth.user.role === 'Admin';
 
 const props = defineProps({
     user: {
@@ -55,5 +76,6 @@ const form = useForm({
     gender: props.user?.gender,
     email: props.user?.email,
     phone: props.user?.phone,
+    role: props.user?.role,
 });
 </script>

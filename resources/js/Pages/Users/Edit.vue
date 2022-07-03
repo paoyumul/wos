@@ -21,21 +21,26 @@
         </div>
         <div class="card mt-3">
             <div class="card-body">
-                <h3>Appointments</h3>
+                <h3>Appointments / Records</h3>
                 <table class="table table-vcenter card-table">
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Time</th>
                             <th>Service</th>
+                            <th>Notes</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="appointment in data.user.appointments" :key="appointment.id">
-                            <td>{{ appointment.schedule.date }}</td>
-                            <td>{{ appointment.schedule.time_from }} - {{ appointment.schedule.time_to }}</td>
+                            <td>
+                                <span class="block leading-none">{{ appointment.schedule.date }}</span>
+                                <span class="text-sm">
+                                    {{ appointment.schedule.time_from }} - {{ appointment.schedule.time_to }}
+                                </span>
+                            </td>
                             <td>{{ appointment.service.name }}</td>
+                            <td>{{ appointment.notes }}</td>
                             <td>
                                 <Link
                                     :href="$route('admin.appointments.edit', appointment.id)"
