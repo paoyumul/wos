@@ -18,13 +18,32 @@
                         type="text"
                         class="form-control @error('first_name') is-invalid @enderror"
                         name="first_name"
-                        value="{{ old('name') }}"
+                        value="{{ old('first_name') }}"
                         required
-                        autocomplete="name"
+                        autocomplete="first_name"
                         autofocus
                     >
 
-                    @error('name')
+                    @error('first_name')
+                        <span class="text-red-500 text-xs" role="alert">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="row mb-3">
+                    <label for="first_name">{{ __('Last Name') }}</label>
+
+                    <input
+                        id="last_name"
+                        type="text"
+                        class="form-control @error('last_name') is-invalid @enderror"
+                        name="last_name"
+                        value="{{ old('last_name') }}"
+                        required
+                        autocomplete="last_name"
+                        autofocus
+                    >
+
+                    @error('last_name')
                         <span class="text-red-500 text-xs" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
