@@ -112,8 +112,6 @@ import { Link, usePage, useForm } from '@inertiajs/inertia-vue3';
 const user = computed(() => usePage().props.value.auth.user);
 const isAdmin = user.value.role === 'Admin';
 
-console.log(isAdmin);
-
 const form = useForm({
     _token: usePage().props.value.csrf_token,
 });
