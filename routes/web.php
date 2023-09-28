@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecordController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ServiceController;
@@ -29,8 +30,7 @@ Auth::routes();
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('admin.dashboard')
-        ->middleware(['patient']);
+        ->name('admin.dashboard');
 
     Route::get('profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
 
@@ -61,6 +61,13 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('admin.appointments.edit');
     Route::post('appointments', [AppointmentController::class, 'store'])->name('admin.appointments.store');
     Route::patch('appointments/{appointment}', [AppointmentController::class, 'update'])->name('admin.appointments.update');
+
+    Route::delete('records/{record}', [RecordController::class, 'destroy'])->name('admin.records.delete');
+    Route::get('records', [RecordController::class, 'index'])->name('admin.records.index');
+    Route::get('records/create', [RecordController::class, 'create'])->name('admin.records.create');
+    Route::get('records/{record}/edit', [RecordController::class, 'edit'])->name('admin.records.edit');
+    Route::post('records', [RecordController::class, 'store'])->name('admin.records.store');
+    Route::patch('records/{record}', [RecordController::class, 'update'])->name('admin.records.update');
 
     Route::delete('sales/{sale}', [SaleController::class, 'destroy'])->name('admin.sales.delete');
     Route::get('sales', [SaleController::class, 'index'])->name('admin.sales.index');

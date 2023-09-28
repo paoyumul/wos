@@ -21,6 +21,47 @@
         </div>
         <div class="card mt-3">
             <div class="card-body">
+                <h3>History Records</h3>
+                <table class="table table-vcenter card-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Remarks</th>
+                            <th>Files</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="record in data.user.records" :key="record.id">
+                            <td>
+                                <span class="block leading-none">{{ record.created_at }}</span>
+                            </td>
+                            <td>{{ record.remarks }}</td>
+                            <td>{{ record.file }}</td>
+                            <td>
+                                <Link
+                                    :href="$route('admin.records.edit', record.id)"
+                                    class="btn btn-primary btn-round btn-sm btn-outline me-2"
+                                >
+                                    Edit
+                                </Link>
+                                <Link
+                                    :href="$route('admin.records.delete', record.id)"
+                                    method="delete"
+                                    as="button"
+                                    type="button"
+                                    class="btn btn-round btn-outline btn-sm"
+                                >
+                                    Delete
+                                </Link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-body">
                 <h3>Appointments / Records</h3>
                 <table class="table table-vcenter card-table">
                     <thead>

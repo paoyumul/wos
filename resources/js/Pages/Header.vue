@@ -56,7 +56,7 @@
             <div class="navbar navbar-light">
                 <div class="container-xl">
                     <ul class="navbar-nav">
-                        <li class="nav-item" v-if="isAdmin">
+                        <li class="nav-item">
                             <Link class="nav-link" :href="$route('admin.dashboard')">
                                 <span class="nav-link-title">
                                     Home
@@ -81,6 +81,13 @@
                             <Link class="nav-link" :href="$route('admin.schedules.index')">
                                 <span class="nav-link-title">
                                     Schedules
+                                </span>
+                            </Link>
+                        </li>
+                        <li class="nav-item" v-if="isAdmin">
+                            <Link class="nav-link" :href="$route('admin.records.index')">
+                                <span class="nav-link-title">
+                                    Records
                                 </span>
                             </Link>
                         </li>

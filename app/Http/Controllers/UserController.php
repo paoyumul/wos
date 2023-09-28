@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user->load('appointments.schedule', 'appointments.service', 'payments.service');
+        $user->load('appointments.schedule', 'appointments.service', 'payments.service', 'records');
 
         return inertia('Users/Edit', [
             'data' => [
