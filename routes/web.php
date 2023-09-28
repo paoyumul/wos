@@ -11,6 +11,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,4 +76,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('sales/{sale}/edit', [SaleController::class, 'edit'])->name('admin.sales.edit');
     Route::post('sales', [SaleController::class, 'store'])->name('admin.sales.store');
     Route::patch('sales/{sale}', [SaleController::class, 'update'])->name('admin.sales.update');
+
+    Route::post('announcements', function () {
+        Cache::put('announcement', request('announcement'));
+        session()->flash('message', 'The announcement has been updated.');
+    })->name('admin.announcements.store');
 });

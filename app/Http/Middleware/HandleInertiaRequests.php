@@ -45,6 +45,9 @@ class HandleInertiaRequests extends Middleware
         $props = array_merge(parent::share($request), [
             'appName' => config('app.name'),
             'csrf_token' => csrf_token(),
+            'announcement' => function () {
+                return cache()->get('announcement');
+            },
             'auth.user' => function () use ($request) {
                 return $request->user()
                     ? $request->user()->only('id', 'first_name', 'last_name', 'email', 'role')

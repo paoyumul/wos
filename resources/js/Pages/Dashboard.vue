@@ -32,14 +32,27 @@
                 </Link>
             </div>
         </div>
-        <div class="col-span-6 md:col-span-12">
+        <div class="col-span-6 md:col-span-12" v-if="isAdmin">
             <div class="text-lg mb-2">Announcements</div>
+            <form @submit.prevent="form.post('/announcements')">
+                <textarea name="" v-model="form.announcement" class="p-3" id="" cols="30" rows="10" style="height: 200px"></textarea>
+                <button class="btn btn-primary">Save Announcement</button>
+            </form>
+        </div>
+        <div class="col-span-6 md:col-span-12" v-if="!isAdmin">
+            <div class="text-lg mb-2">Announcements</div>
+            <div v-html="form.announcement"></div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { usePage, Link } from '@inertiajs/inertia-vue3';
+import { useForm, usePage, Link } from '@inertiajs/inertia-vue3';
 
 const upcomingAppointments = usePage().props.value.upcomingAppointments;
+const isAdmin = usePage().props.value.auth.user.role === 'Admin';
+const form = useForm({
+    _token: usePage().props.value.csrf_token,
+    announcement: usePage().props.value.announcement,
+});
 </script>
