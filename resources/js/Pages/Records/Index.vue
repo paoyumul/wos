@@ -26,7 +26,7 @@
                             <td>{{ record.created_at }}</td>
                             <td>{{ record.user.first_name }} {{ record.user.last_name }}</td>
                             <td>{{ record.remarks }}</td>
-                            <td><img :src="record.file"></td>
+                            <td></td>
                             <td>
                                 <Link
                                     :href="$route('admin.records.edit', record.id)"
